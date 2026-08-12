@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Abdelrahman Sobhy Mohamed | Certificates & Dates</title>
+    <meta name="description" content="Certificates and qualification dates for Abdelrahman Sobhy Mohamed.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy-950: #0a1526;
+            --navy-900: #0f2138;
+            --navy-800: #16304f;
+            --navy-700: #1d3d63;
+            --gold-500: #d4a017;
+            --gold-400: #e8b923;
+            --gold-300: #f5cc4d;
+            --text-light: #eef2f7;
+            --text-muted: #a9b8cc;
+            --verify-500: #29c58f;
+            --verify-400: #3ee0a5;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 0%, #16304f 0%, transparent 45%),
+                radial-gradient(circle at 100% 100%, #12253d 0%, transparent 50%),
+                linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 55%, #0c1c30 100%);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', 'Cairo', 'Tahoma', sans-serif;
+            padding: 2.5rem 1.5rem;
+            min-height: 100vh;
+            color: var(--text-light);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .lang-switch.fade-in-up { animation-delay: 0.02s; }
+        .profile-header.fade-in-up { animation-delay: 0.06s; }
+        .page-header.fade-in-up { animation-delay: 0.1s; }
+        .cert-grid.fade-in-up { animation-delay: 0.16s; }
+        .back-wrap.fade-in-up { animation-delay: 0.24s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--gold-300);
+            outline-offset: 3px;
+            border-radius: 8px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* Language switcher — same behavior/look as the main CV page */
+        .lang-switch { display: flex; justify-content: flex-end; gap: 1rem; margin-bottom: 1.5rem; }
+        .lang-btn {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-light);
+            border: 1px solid rgba(212,160,23,0.35);
+            padding: 8px 22px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .lang-btn.active { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); border-color: transparent; }
+        .lang-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 20px rgba(212,160,23,0.25); border-color: var(--gold-400); }
+
+        /* Profile header — photo + name + title, same identity strip as
+           the main CV page so this page never feels disconnected from it. */
+        .profile-header {
+            display: flex; align-items: center; justify-content: center; gap: 1.4rem;
+            flex-wrap: wrap; text-align: center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(212,160,23,0.25);
+            border-radius: 32px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+        }
+        .profile-header img {
+            width: 92px; height: 92px; object-fit: cover; border-radius: 50%;
+            border: 3px solid var(--navy-900);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.4), 0 0 0 4px var(--gold-400);
+            flex-shrink: 0;
+        }
+        .profile-header-text { text-align: start; }
+        body.lang-ar .profile-header-text { text-align: right; }
+        .profile-header-text h2 { font-size: 1.3rem; color: var(--text-light); margin-bottom: 4px; }
+        .profile-header-text p { font-size: 0.92rem; color: var(--gold-300); font-weight: bold; }
+
+        /* Page header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .page-header h1 {
+            font-size: 1.9rem;
+            display: inline-flex; align-items: center; gap: 12px;
+            color: var(--text-light);
+        }
+        .page-header h1 i { color: var(--gold-400); }
+        .page-header p {
+            color: var(--text-muted);
+            margin-top: 0.6rem;
+            font-size: 0.98rem;
+        }
+
+        /* Certificate cards — each shows the actual certificate image,
+           large and clear, with its name / issuer / date underneath. */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .cert-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex; flex-direction: column;
+        }
+        .cert-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212,160,23,0.4);
+            box-shadow: 0 20px 42px rgba(0,0,0,0.4);
+        }
+        .cert-img-wrap {
+            background: #0c1c30;
+            aspect-ratio: 4 / 3;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .cert-img-wrap img {
+            width: 100%; height: 100%; object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .cert-card:hover .cert-img-wrap img { transform: scale(1.04); }
+        .cert-info { padding: 1.1rem 1.3rem 1.3rem; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+        .cert-name {
+            font-weight: bold;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+        .cert-issuer {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+        .cert-date {
+            align-self: flex-start;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(212,160,23,0.14);
+            border: 1px solid rgba(212,160,23,0.35);
+            color: var(--gold-300);
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            margin-top: auto;
+        }
+
+        /* Lightbox — tap any certificate image to view it full-size */
+        .img-lightbox { display: none; position: fixed; inset: 0; background: rgba(5,10,20,0.97); z-index: 3000; justify-content: center; align-items: center; cursor: pointer; padding: 2rem; }
+        .img-lightbox.active { display: flex; }
+        .img-lightbox img { max-width: 92%; max-height: 92%; object-fit: contain; border-radius: 16px; }
+        .close-icon { position: absolute; top: 24px; right: 28px; font-size: 2.2rem; color: var(--text-light); background: rgba(255,255,255,0.08); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+        .close-icon:hover { background: var(--gold-500); color: var(--navy-950); transform: rotate(90deg) scale(1.08); }
+
+        /* Back-to-index button */
+        .back-wrap { display: flex; justify-content: center; }
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            border: none; color: var(--navy-950); font-weight: bold;
+            padding: 15px 36px; border-radius: 60px; font-size: 1.05rem; cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 12px 28px rgba(212,160,23,0.3);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .btn-back:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 34px rgba(212,160,23,0.45); }
+        body.lang-ar .btn-back i { transform: scaleX(-1); }
+
+        @media (max-width: 600px) {
+            body { padding: 1.5rem 1rem; }
+            .profile-header { flex-direction: column; padding: 1.4rem 1.2rem; }
+            .profile-header-text { text-align: center; }
+            body.lang-ar .profile-header-text { text-align: center; }
+            .cert-grid { grid-template-columns: 1fr; gap: 1.3rem; }
+            .page-header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Language Switcher -->
+    <div class="lang-switch fade-in-up">
+        <button class="lang-btn" id="lang-ar">🇪🇬 العربية</button>
+        <button class="lang-btn active" id="lang-en">🇬🇧 English</button>
+    </div>
+
+    <!-- Profile header -->
+    <div class="profile-header fade-in-up">
+        <img src="profil.jpg" alt="Profile" onerror="this.src='https://placehold.co/400x400/0f2138/d4a017?text=CV'">
+        <div class="profile-header-text">
+            <h2 id="profileName"></h2>
+            <p id="profileTitle"></p>
+        </div>
+    </div>
+
+    <!-- Page header -->
+    <div class="page-header fade-in-up">
+        <h1><i class="fas fa-certificate"></i> <span id="pageTitle"></span></h1>
+        <p id="pageSubtitle"></p>
+    </div>
+
+    <!-- Certificates: image + name + issuer + date -->
+    <div class="cert-grid fade-in-up" id="certGrid"></div>
+
+    <!-- Back to index -->
+    <div class="back-wrap fade-in-up">
+        <a class="btn-back" href="index.html" id="backBtn">
+            <i class="fas fa-arrow-left"></i> <span id="backText"></span>
+        </a>
+    </div>
+
+</div>
+
+<!-- Lightbox -->
+<div id="imgLightbox" class="img-lightbox">
+    <div class="close-icon" id="closeLightboxBtn">✖</div>
+    <img id="zoomedImg" src="" alt="Enlarged Certificate">
+</div>
+
+<script>
+    // Same certificates as the main CV's certificates table, kept in one
+    // place here since this page's only job is to show them clearly —
+    // each one paired with its actual scanned image, not just the date.
+    const content = {
+        ar: {
+            profileName: "عبدالرحمن صبحى محمد",
+            profileTitle: "خريج تربية رياضية - يجيد التعامل مع الكمبيوتر",
+            pageTitle: "الشهادات والتواريخ",
+            pageSubtitle: "قائمة بالشهادات والمؤهلات مع تاريخ كل منها",
+            backText: "الرجوع إلى الصفحة الرئيسية",
+            rows: [
+                { file: "images/graduation-certificate.jpg", name: "شهادة التخرج - بكالوريوس التربية الرياضية", issuer: "كلية التربية الرياضية - جامعة المنيا", date: "16/11/2025" },
+                { file: "images/1.jpg", name: "شهادة ICDL - رخصة قيادة الحاسب الآلي الدولية", issuer: "منظمة ICDL", date: "24/5/2023" },
+                { file: "images/2.jpg", name: "شهادة معتمدة في مجال الصحة والإدارة الصحية", issuer: "منصة إدراك (Edraak)", date: "9/8/2026" }
+            ]
+        },
+        en: {
+            profileName: "Abdelrahman Sobhy Mohamed",
+            profileTitle: "Physical Education Graduate — Skilled in Computer Use",
+            pageTitle: "Certificates & Dates",
+            pageSubtitle: "Every certificate and qualification, with the date it was earned",
+            backText: "Back to Home Page",
+            rows: [
+                { file: "images/graduation-certificate.jpg", name: "Graduation Certificate - Bachelor's in Physical Education", issuer: "Faculty of Physical Education, Minia University", date: "16/11/2025" },
+                { file: "images/1.jpg", name: "ICDL - International Computer Driving Licence", issuer: "ICDL Foundation", date: "24/5/2023" },
+                { file: "images/2.jpg", name: "Certified Course in Health & Health Administration", issuer: "Edraak Platform", date: "9/8/2026" }
+            ]
+        }
+    };
+
+    // Lightbox
+    const lightbox = document.getElementById('imgLightbox');
+    const zoomedImg = document.getElementById('zoomedImg');
+    function openLightbox(src) { zoomedImg.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; zoomedImg.src = ''; }
+    document.getElementById('closeLightboxBtn').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
+
+    function updateLanguage(lang) {
+        const data = content[lang];
+
+        document.getElementById('profileName').innerText = data.profileName;
+        document.getElementById('profileTitle').innerText = data.profileTitle;
+        document.getElementById('pageTitle').innerText = data.pageTitle;
+        document.getElementById('pageSubtitle').innerText = data.pageSubtitle;
+        document.getElementById('backText').innerText = data.backText;
+
+        document.getElementById('certGrid').innerHTML = data.rows.map((row) => `
+            <div class="cert-card">
+                <div class="cert-img-wrap" role="button" tabindex="0" aria-label="${row.name}" data-src="${row.file}">
+                    <img src="${row.file}" alt="${row.name}"
+                         onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%230c1c30%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23d4a017%22 font-size=%2214%22%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="cert-info">
+                    <div class="cert-name">${row.name}</div>
+                    <div class="cert-issuer">${row.issuer}</div>
+                    <div class="cert-date"><i class="fas fa-calendar-check"></i> ${row.date}</div>
+                </div>
+            </div>
+        `).join('');
+
+        // Wire up click-to-enlarge on the freshly rendered images
+        document.querySelectorAll('.cert-img-wrap').forEach(el => {
+            const activate = () => openLightbox(el.getAttribute('data-src'));
+            el.addEventListener('click', activate);
+            el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+        });
+
+        document.body.classList.toggle('lang-ar', lang === 'ar');
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    }
+
+    document.getElementById('lang-ar').addEventListener('click', () => updateLanguage('ar'));
+    document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
+
+    updateLanguage('en');
+</script>
+</body>
+</html>

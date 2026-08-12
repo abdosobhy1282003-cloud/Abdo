@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Abdelrahman Sobhy Mohamed | Physical Education Graduate</title>
+    <meta name="description" content="Abdelrahman Sobhy Mohamed — Physical Education graduate, ICDL certified, skilled in data entry, IT support and computer use. Interactive bilingual CV (Arabic/English).">
+    <meta property="og:title" content="Abdelrahman Sobhy Mohamed | Physical Education Graduate">
+    <meta property="og:description" content="ICDL-certified graduate skilled in data entry, IT support and computer use. View the full interactive CV.">
+    <meta property="og:type" content="profile">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!--
+        ============================================================
+        QR CODE NOTE (read me):
+        The certificate photo that used to sit large in the CV sidebar
+        is now a small thumbnail, and next to the contact info there is
+        an empty QR placeholder box (id="cvQrImg", file path
+        "images/qr.jpg"). It is intentionally left EMPTY — just drop
+        your own QR image file at that path (named qr.jpg, next to your
+        other images) and it will appear there automatically, at the
+        same size, in the sidebar, in print, and in the downloaded PDF.
+        Until that file exists, a neutral dashed placeholder is shown
+        instead of a broken image icon.
+        ============================================================
+    -->
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy-950: #0a1526;
+            --navy-900: #0f2138;
+            --navy-800: #16304f;
+            --navy-700: #1d3d63;
+            --gold-500: #d4a017;
+            --gold-400: #e8b923;
+            --gold-300: #f5cc4d;
+            --text-light: #eef2f7;
+            --text-muted: #a9b8cc;
+            --verify-500: #29c58f;
+            --verify-400: #3ee0a5;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 0%, #16304f 0%, transparent 45%),
+                radial-gradient(circle at 100% 100%, #12253d 0%, transparent 50%),
+                linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 55%, #0c1c30 100%);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', 'Cairo', 'Tahoma', sans-serif;
+            padding: 2.5rem 1.5rem;
+            min-height: 100vh;
+            color: var(--text-light);
+        }
+        body.lang-en { font-family: 'Segoe UI', 'Poppins', sans-serif; }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,0.45), 0 10px 25px rgba(212,160,23,0.25); }
+            50% { box-shadow: 0 0 0 12px rgba(212,160,23,0), 0 10px 25px rgba(212,160,23,0.35); }
+        }
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes shimmerMove {
+            0% { transform: translateX(-120%) skewX(-20deg); }
+            100% { transform: translateX(220%) skewX(-20deg); }
+        }
+        @keyframes overlayFadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+        @keyframes overlayFadeOut {
+            from { opacity: 1; } to { opacity: 0; }
+        }
+        @keyframes cvPanelIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        /* Staggered entrance for the main blocks */
+        .lang-switch.fade-in-up { animation-delay: 0.02s; }
+        .profile-card.fade-in-up { animation-delay: 0.08s; }
+        .certificate-btn.fade-in-up { animation-delay: 0.14s; }
+        #dynamicContent .cv-section.fade-in-up:nth-of-type(1) { animation-delay: 0.18s; }
+        #dynamicContent .cv-section.fade-in-up:nth-of-type(2) { animation-delay: 0.24s; }
+        #dynamicContent .cv-section.fade-in-up:nth-of-type(3) { animation-delay: 0.30s; }
+        #dynamicContent .cv-section.fade-in-up:nth-of-type(4) { animation-delay: 0.36s; }
+        #dynamicContent .cv-section.fade-in-up:nth-of-type(5) { animation-delay: 0.42s; }
+        .cv-trigger-wrap.fade-in-up { animation-delay: 0.46s; }
+        .contact-links.fade-in-up { animation-delay: 0.50s; }
+
+        .float-icon { display: inline-block; animation: floatIcon 3s ease-in-out infinite; }
+
+        /* Respect the OS-level "reduce motion" accessibility setting —
+           every decorative animation on the page is opt-out for anyone
+           who finds motion distracting or physically uncomfortable. */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Visible keyboard-focus ring — the page is fully clickable, but
+           until now had no clear focus indicator for keyboard/tab users. */
+        a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid var(--gold-300);
+            outline-offset: 3px;
+            border-radius: 8px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+        [dir="ltr"] .container, body:not(.lang-ar) { text-align: left; }
+        body.lang-ar .cv-section h2 { border-right: 6px solid var(--gold-400); border-left: none; padding-right: 1rem; padding-left: 0; }
+        body:not(.lang-ar) .cv-section h2 { border-left: 6px solid var(--gold-400); border-right: none; padding-left: 1rem; padding-right: 0; }
+
+        /* Language Switcher */
+        .lang-switch { display: flex; justify-content: flex-end; gap: 1rem; margin-bottom: 1.5rem; }
+        .lang-btn {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-light);
+            border: 1px solid rgba(212,160,23,0.35);
+            padding: 8px 22px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .lang-btn.active { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); border-color: transparent; }
+        .lang-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 20px rgba(212,160,23,0.25); border-color: var(--gold-400); }
+
+        /* Profile Card */
+        .profile-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            backdrop-filter: blur(14px);
+            border-radius: 40px;
+            padding: 2.2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid rgba(212,160,23,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(120deg, transparent 40%, rgba(212,160,23,0.08) 50%, transparent 60%);
+            pointer-events: none;
+        }
+        .profile-avatar img {
+            width: 155px; height: 155px; object-fit: cover; border-radius: 50%;
+            border: 4px solid var(--navy-900);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 0 5px var(--gold-400);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .profile-avatar img:hover { transform: scale(1.06) rotate(1deg); box-shadow: 0 18px 36px rgba(0,0,0,0.45), 0 0 0 6px var(--gold-300); }
+        .profile-details { flex: 1; text-align: center; min-width: 260px; }
+        .profile-details h1 { font-size: 2.2rem; margin-bottom: 0.4rem; letter-spacing: 0.3px; }
+        .badge-title {
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            color: var(--navy-950);
+            display: inline-block; padding: 7px 20px; border-radius: 40px;
+            font-weight: bold; margin: 8px 0; font-size: 1rem;
+            animation: pulseGlow 2.6s ease-in-out infinite;
+        }
+        .profile-stats { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.9rem; }
+        .stat-item {
+            background: rgba(212,160,23,0.12);
+            border: 1px solid rgba(212,160,23,0.3);
+            padding: 0.4rem 1.1rem; border-radius: 30px; font-size: 0.85rem; color: var(--gold-300);
+        }
+
+        /* CV Sections */
+        .cv-section {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .cv-section:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212,160,23,0.35);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+        }
+        .cv-section h2 { font-size: 1.5rem; margin-bottom: 1.3rem; display: flex; align-items: center; gap: 10px; color: var(--gold-300); }
+        .cv-section p, .cv-section li { color: var(--text-light); line-height: 1.9; }
+
+        .info-grid { display: flex; flex-wrap: wrap; gap: 1.6rem; }
+        .info-card {
+            flex: 1; min-width: 260px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,160,23,0.18);
+            padding: 1.3rem 1.4rem; border-radius: 20px;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+            background: rgba(212,160,23,0.06);
+            border-color: var(--gold-400);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.3);
+        }
+        .info-card h3 { color: var(--gold-400); margin-bottom: 0.7rem; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .info-card ul { padding-inline-start: 1.2rem; }
+        .info-card li { margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .info-card li::marker { color: var(--gold-400); }
+
+        .age-note {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(212,160,23,0.14); border: 1px solid rgba(212,160,23,0.35);
+            padding: 8px 18px; border-radius: 30px; margin-top: 1rem; font-size: 0.9rem; color: var(--gold-300);
+        }
+
+        .apply-box {
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+            margin-top: 1.5rem; padding: 1.3rem 1.6rem;
+            background: linear-gradient(135deg, rgba(212,160,23,0.14), rgba(212,160,23,0.05));
+            border: 1px solid rgba(212,160,23,0.35); border-radius: 22px;
+        }
+        .apply-box p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
+        .btn-apply {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            color: var(--navy-950); font-weight: bold; text-decoration: none;
+            padding: 12px 28px; border-radius: 50px; font-size: 1rem;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1); white-space: nowrap;
+            position: relative; overflow: hidden;
+        }
+        .btn-apply:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 28px rgba(212,160,23,0.4); }
+
+        .skills-wrapper { display: flex; flex-wrap: wrap; gap: 1.6rem; }
+        .skills-col { flex: 1; min-width: 240px; background: rgba(255,255,255,0.03); border: 1px solid rgba(212,160,23,0.18); padding: 1.2rem; border-radius: 20px; }
+        .skills-col h3 { color: var(--gold-400); margin-bottom: 0.8rem; font-size: 1.05rem; }
+        .badge-skill {
+            display: inline-block; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,160,23,0.2);
+            padding: 6px 14px; border-radius: 30px; margin: 5px; font-size: 0.87rem; color: var(--text-light);
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .badge-skill:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: rgba(212,160,23,0.18);
+            border-color: var(--gold-400);
+            color: var(--gold-300);
+        }
+
+        /* Shimmer sweep effect for all gold / primary action buttons */
+        .btn-apply, .btn-show-certs, .btn-cert-page,
+        .btn-view-cv, .cv-pdf-btn, .cv-print-btn {
+            position: relative; overflow: hidden;
+        }
+        .btn-apply::after, .btn-show-certs::after, .btn-cert-page::after,
+        .btn-view-cv::after, .cv-pdf-btn::after, .cv-print-btn::after {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 40%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+            transform: translateX(-120%) skewX(-20deg);
+            pointer-events: none;
+        }
+        .btn-apply:hover::after, .btn-show-certs:hover::after, .btn-cert-page:hover::after,
+        .btn-view-cv:hover::after, .cv-pdf-btn:hover::after, .cv-print-btn:hover::after {
+            animation: shimmerMove 0.9s ease forwards;
+        }
+
+        .courses-table { width: 100%; border-collapse: collapse; }
+        .courses-table th, .courses-table td { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 8px; text-align: left; font-size: 0.92rem; }
+        body.lang-ar .courses-table th, body.lang-ar .courses-table td { text-align: right; }
+        .courses-table th { color: var(--gold-400); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .notice { background: rgba(212,160,23,0.08); border-left: 4px solid var(--gold-400); padding: 10px 14px; border-radius: 14px; margin-top: 15px; font-size: 0.88rem; color: var(--text-muted); }
+        body.lang-ar .notice { border-left: none; border-right: 4px solid var(--gold-400); }
+
+        /* Certificate Button & Gallery */
+        .certificate-btn { display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 1rem 0; flex-wrap: wrap; }
+        .btn-cert-page {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(212,160,23,0.45);
+            padding: 15px 30px; border-radius: 60px; color: var(--gold-300);
+            font-size: 1.1rem; font-weight: bold; cursor: pointer; text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-cert-page:hover { transform: translateY(-3px) scale(1.03); background: rgba(212,160,23,0.14); box-shadow: 0 14px 30px rgba(212,160,23,0.25); border-color: var(--gold-400); }
+        .btn-show-certs {
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+            border: none; padding: 15px 34px; border-radius: 60px; color: var(--navy-950);
+            font-size: 1.25rem; font-weight: bold; cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(212,160,23,0.25);
+        }
+        .btn-show-certs:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 32px rgba(212,160,23,0.4); }
+        .certificates-gallery {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 32px; padding: 2rem; margin: 1rem 0 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25); display: none; animation: fadeSlideDown 0.4s ease;
+        }
+        .certificates-gallery.show { display: block; }
+        @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.6rem; }
+        .cert-card {
+            background: rgba(212,160,23,0.06); border: 1px solid rgba(212,160,23,0.25);
+            border-radius: 20px; padding: 1rem; cursor: pointer; text-align: center;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .cert-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 30px rgba(0,0,0,0.35); border-color: var(--gold-400); }
+        .cert-card img { width: 100%; max-height: 190px; object-fit: contain; border-radius: 14px; background: #0c1c30; }
+        .cert-card p { margin-top: 12px; font-weight: bold; color: var(--gold-300); font-size: 0.9rem; }
+        .gallery-note { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Lightbox */
+        .img-lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,10,20,0.97); z-index: 3000; justify-content: center; align-items: center; cursor: pointer; }
+        .img-lightbox.active { display: flex; }
+        .img-lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 16px; }
+        .close-icon { position: absolute; top: 28px; right: 36px; font-size: 2.6rem; color: var(--text-light); background: rgba(255,255,255,0.08); width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+        .close-icon:hover { background: var(--gold-500); color: var(--navy-950); transform: rotate(90deg) scale(1.08); }
+
+        /* Contact Links + PDF buttons */
+        .contact-links {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 32px; padding: 1.5rem; text-align: center; margin: 2rem 0 0.5rem;
+            display: flex; justify-content: center; gap: 1.1rem; flex-wrap: wrap;
+        }
+        .contact-btn {
+            display: inline-flex; align-items: center; gap: 9px;
+            color: var(--navy-950); padding: 12px 24px; border-radius: 50px; text-decoration: none;
+            font-weight: bold; font-size: 0.92rem; transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1); border: none; cursor: pointer;
+        }
+        .contact-btn.whatsapp { background: #25D366; color: #06210f; }
+        .contact-btn.call { background: rgba(255,255,255,0.1); color: var(--text-light); border: 1px solid rgba(255,255,255,0.2); }
+        .contact-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 22px rgba(0,0,0,0.3); opacity: 0.97; }
+
+        /* ===== View Full CV trigger button ===== */
+        .cv-trigger-wrap { display: flex; justify-content: center; margin: 0.5rem 0 1.5rem; }
+        .btn-view-cv {
+            background: linear-gradient(135deg, var(--gold-300), var(--gold-500));
+            border: none; color: var(--navy-950); font-weight: bold;
+            padding: 18px 42px; border-radius: 60px; font-size: 1.3rem; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 14px;
+            box-shadow: 0 12px 30px rgba(212,160,23,0.35);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            animation: pulseGlow 2.8s ease-in-out infinite;
+        }
+        .btn-view-cv:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 18px 40px rgba(212,160,23,0.5); }
+
+        footer { text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.82rem; }
+
+        /* ===== Extra polish: scroll progress bar ===== */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+            background: linear-gradient(90deg, var(--gold-400), var(--verify-500));
+            z-index: 6000; transition: width 0.15s ease-out;
+        }
+
+        /* ===== Extra polish: back-to-top button ===== */
+        .back-to-top {
+            position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950);
+            border: none; font-size: 1.2rem; cursor: pointer; display: none; align-items: center; justify-content: center;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.4); z-index: 2500; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .back-to-top.show { display: flex; animation: fadeInUp 0.3s ease both; }
+        .back-to-top:hover { transform: translateY(-4px) scale(1.08); }
+        body.lang-ar .back-to-top { right: auto; left: 24px; }
+
+        /* ===== Extra polish: copy-to-clipboard toast ===== */
+        .copy-toast {
+            position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--verify-500); color: #06210f; font-weight: bold; font-size: 0.9rem;
+            padding: 10px 22px; border-radius: 22px; box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+            z-index: 6000; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            max-width: min(92vw, 460px); width: max-content; text-align: center;
+            line-height: 1.5; overflow-wrap: break-word;
+        }
+        .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        .cv-sidebar-contact li { cursor: pointer; }
+        .cv-sidebar-contact li:hover { color: var(--gold-300); }
+
+        /* ============================================
+           Full CV Overlay Page
+           ============================================ */
+        .cv-overlay {
+            display: none;
+            position: fixed; inset: 0; z-index: 5000;
+            background: rgba(5,10,20,0.98);
+            overflow-y: auto;
+            padding: 3rem 1.2rem;
+        }
+        .cv-overlay.active { display: block; animation: overlayFadeIn 0.35s ease both; }
+        .cv-overlay.closing { animation: overlayFadeOut 0.3s ease both; }
+
+        .cv-overlay-panel {
+            max-width: 1000px; margin: 0 auto; position: relative;
+            background:
+                radial-gradient(circle at 15% 0%, #16304f 0%, transparent 45%),
+                radial-gradient(circle at 100% 100%, #12253d 0%, transparent 50%),
+                linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 55%, #0c1c30 100%);
+            border: 1px solid rgba(212,160,23,0.3);
+            border-radius: 40px;
+            box-shadow: 0 40px 90px rgba(0,0,0,0.55);
+            padding: 3rem 2.5rem 2.5rem;
+            animation: cvPanelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .cv-close-btn {
+            position: sticky; top: 0; margin-left: auto;
+            display: flex; align-items: center; justify-content: center;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(212,160,23,0.35);
+            color: var(--text-light); font-size: 1.5rem; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 10;
+        }
+        .cv-close-btn:hover { background: var(--gold-500); color: var(--navy-950); transform: rotate(90deg) scale(1.08); }
+        body.lang-ar .cv-close-btn { margin-left: 0; margin-right: auto; }
+
+        .cv-actions-bar {
+            display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+            margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .cv-pdf-btn, .cv-print-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 13px 28px; border-radius: 50px; border: none; cursor: pointer;
+            font-weight: bold; font-size: 0.95rem;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .cv-pdf-btn { background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950); }
+        .cv-print-btn { background: rgba(255,255,255,0.1); color: var(--text-light); border: 1px solid rgba(255,255,255,0.25); }
+        .cv-pdf-btn:hover, .cv-print-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 26px rgba(0,0,0,0.3); }
+
+        /* ============================================
+           Full CV — professional resume layout
+           (two columns: sidebar + main), Canva-template style
+           ============================================ */
+        .cv-resume-grid {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            gap: 2.2rem;
+            align-items: start;
+        }
+
+        .cv-sidebar {
+            background: linear-gradient(160deg, rgba(212,160,23,0.10), rgba(255,255,255,0.03));
+            border: 1px solid rgba(212,160,23,0.28);
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 1rem;
+        }
+        .cv-sidebar-photo {
+            width: 128px; height: 128px; object-fit: cover; border-radius: 50%;
+            border: 4px solid var(--navy-900);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.4), 0 0 0 5px var(--gold-400);
+            margin-bottom: 1rem;
+        }
+        .cv-sidebar-name {
+            font-size: 1.45rem; margin-bottom: 0.5rem; line-height: 1.3;
+            color: var(--gold-300);
+        }
+        .cv-sidebar-block { text-align: start; margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid rgba(212,160,23,0.2); }
+        .cv-sidebar-heading { color: var(--gold-400); font-size: 1.02rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+        .cv-sidebar-contact { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .cv-sidebar-contact li { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: var(--text-muted); direction: ltr; justify-content: flex-start; }
+        body.lang-ar .cv-sidebar-contact li { justify-content: flex-end; }
+        .cv-sidebar-contact li i { color: var(--gold-400); width: 16px; text-align: center; }
+        .cv-sidebar-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .cv-tag { margin: 0; font-size: 0.85rem; padding: 5px 12px; }
+
+        /* Graduation milestone — a compact visual badge (small photo +
+           key facts in one row), deliberately different from the plain
+           Education paragraph below. */
+        .cv-grad-badge {
+            text-align: start; margin-top: 1.3rem;
+            display: flex; flex-direction: column; gap: 0.85rem;
+            background: linear-gradient(135deg, rgba(212,160,23,0.18), rgba(212,160,23,0.05));
+            border: 1px solid rgba(212,160,23,0.45);
+            border-radius: 18px;
+            padding: 1rem 1rem 1.1rem;
+        }
+        /* Row 1: small clickable graduation-certificate thumbnail +
+           faculty/university/date, side by side (click photo to enlarge). */
+        .cv-grad-thumb-row { display: flex; align-items: center; gap: 12px; }
+        .cv-grad-thumb {
+            width: 58px; height: 58px; flex-shrink: 0; object-fit: cover; border-radius: 10px;
+            border: 1px solid rgba(212,160,23,0.4); cursor: pointer; background: #f4f1e8;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .cv-grad-thumb:hover { transform: scale(1.06); border-color: var(--gold-400); }
+        .cv-grad-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+        .cv-grad-eyebrow {
+            display: inline-flex; align-items: center; gap: 6px; width: fit-content;
+            background: linear-gradient(135deg, var(--gold-400), var(--gold-500)); color: var(--navy-950);
+            font-size: 0.78rem; font-weight: bold; padding: 3px 12px; border-radius: 20px; margin-bottom: 2px;
+        }
+        .cv-grad-eyebrow::before { content: '🎓'; }
+        .cv-grad-info strong { font-size: 1.08rem; color: var(--gold-300); font-weight: 700; }
+        .cv-grad-info > span:not(.cv-grad-date) { font-size: 0.94rem; color: var(--text-light); opacity: 0.92; }
+        .cv-grad-date { font-size: 0.92rem; color: var(--gold-400); font-weight: 700; display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+
+        /* Row 2: contact list beside the QR box — placed together on
+           purpose so there's no empty space next to the QR image. */
+        .cv-contact-qr-row {
+            display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap;
+            padding-top: 0.85rem; border-top: 1px dashed rgba(212,160,23,0.3);
+        }
+        .cv-grad-contact { flex: 1 1 140px; min-width: 140px; }
+        .cv-grad-contact .cv-sidebar-heading { margin-bottom: 0.5rem; }
+
+        /* ===== QR block: sits next to the contact list. The frame is a
+           fixed square (the QR itself is always square) and object-fit:
+           contain means whatever image is dropped in auto-sizes to fill
+           that square cleanly with no cropping or distortion. ===== */
+        .cv-qr-block { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 116px; }
+        .cv-qr-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(41,197,143,0.14); border: 1px solid rgba(41,197,143,0.45); color: var(--verify-400);
+            font-size: 0.66rem; font-weight: bold; padding: 2px 9px; border-radius: 20px; white-space: nowrap;
+        }
+        .cv-qr-frame {
+            width: 108px; height: 108px; background: #fff; border-radius: 12px;
+            border: 1px dashed rgba(212,160,23,0.55); box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .cv-qr-frame img { width: 100%; height: 100%; object-fit: contain; }
+        .cv-qr-caption { font-size: 0.66rem; color: var(--text-muted); line-height: 1.35; text-align: center; }
+
+        .cv-main { display: flex; flex-direction: column; gap: 1.4rem; }
+        .cv-main-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 22px;
+            padding: 1.6rem 1.8rem;
+        }
+        .cv-main-block h2 { font-size: 1.35rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--gold-300); }
+        .cv-main-block p { color: var(--text-light); line-height: 1.85; font-size: 1.04rem; }
+        /* Screen-only bump for the table/notice inside the Full CV overlay
+           (scoped to .cv-overlay-panel so the homepage's own copies of
+           these same classes are untouched) — print and PDF export keep
+           their own explicit, already-tuned sizes further down. */
+        .cv-overlay-panel .courses-table th, .cv-overlay-panel .courses-table td { font-size: 0.98rem; }
+        .cv-overlay-panel .notice { font-size: 0.95rem; }
+
+        @media (max-width: 900px) {
+            .cv-resume-grid { grid-template-columns: 1fr; }
+            .cv-sidebar { position: static; }
+        }
+
+        @media (max-width: 750px) {
+            body { padding: 1.2rem 0.9rem; }
+            .btn-show-certs, .btn-cert-page { font-size: 1.05rem; padding: 12px 24px; }
+            .close-icon { top: 18px; right: 18px; width: 45px; height: 45px; font-size: 2rem; }
+            .apply-box { flex-direction: column; align-items: stretch; text-align: center; }
+            .btn-view-cv { font-size: 1.05rem; padding: 14px 28px; }
+            .cv-overlay-panel { padding: 2.2rem 1.3rem 1.8rem; border-radius: 28px; }
+        }
+
+        /* ============================================
+           Print styles — only the CV overlay content prints,
+           sized precisely for A4. Long text blocks are allowed to break
+           naturally across pages (instead of being forced whole onto the
+           next page) so no page is left half-empty.
+           ============================================ */
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+        @media print {
+            /* Animations mid-flight at the moment of printing is what caused
+               text to vanish while images stayed visible — kill all motion
+               for print so every element is captured at its final, fully
+               visible state. */
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            html, body { background: #fff !important; margin: 0; }
+
+            /* Arabic text vanishing near the page edge when printing
+               was an overflow bug, not a language bug: some inline runs
+               were sizing themselves against the on-screen direction and
+               then quietly overflowing their box once print's tighter A4
+               width kicked in. In RTL that overflow bleeds toward the
+               LEFT edge of the page instead of the right, so the part
+               that got clipped by the page boundary looked like "text
+               disappearing from the left". Two things fix it together:
+               (1) don't just rely on the inherited `dir` attribute —
+               some print/PDF pipelines (older WebViews, in-app browsers)
+               don't carry it through faithfully — so direction and
+               alignment are restated explicitly here; (2) force every
+               run to wrap inside its box instead of overflowing it. */
+            body.lang-ar, body.lang-ar * { direction: rtl !important; }
+            body.lang-ar .cv-overlay-panel,
+            body.lang-ar .cv-sidebar,
+            body.lang-ar .cv-main-block,
+            body.lang-ar .cv-main-block h2,
+            body.lang-ar .cv-sidebar-heading,
+            body.lang-ar .courses-table th,
+            body.lang-ar .courses-table td,
+            body.lang-ar .notice { text-align: right !important; }
+            /* Phone numbers stay a left-to-right digit run (so they read
+               01028414049, not reversed) even though the paragraph
+               around them is RTL — same as on screen — but now right-
+               aligned to match the rest of the printed sidebar. */
+            body.lang-ar .cv-sidebar-contact li { direction: ltr !important; justify-content: flex-end !important; }
+            .cv-overlay-panel, .cv-overlay-panel * {
+                max-width: 100%;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
+                box-sizing: border-box;
+            }
+
+            /* Hide everything except the CV overlay using display:none
+               (not visibility:hidden). visibility:hidden keeps the hidden
+               content's layout space reserved, which was pushing the real
+               CV several page-heights down the document and printing
+               blank pages first. display:none removes it from the flow
+               completely, so the CV starts on page 1. */
+            body > .container,
+            body > #imgLightbox,
+            body > #scrollProgress,
+            body > #backToTopBtn,
+            body > #copyToast {
+                display: none !important;
+            }
+
+            .cv-overlay {
+                display: block !important;
+                position: static !important;
+                background: #fff !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            .cv-overlay-panel {
+                background: #fff !important; color: #111 !important;
+                box-shadow: none !important; border: none !important;
+                border-radius: 0 !important;
+                max-width: 100%; width: 100%; margin: 0; padding: 0 !important;
+                opacity: 1 !important; transform: none !important;
+            }
+            .cv-overlay-panel * { color: #111 !important; }
+            .cv-close-btn, .cv-actions-bar { display: none !important; }
+
+            /* Stack the sidebar above the main column instead of the
+               on-screen CSS grid. Grid columns don't paginate reliably
+               across printed pages (the whole row has to break together),
+               which is what was splitting the CV oddly across extra
+               pages. A normal block flow lets each section break on its
+               own, cleanly, within the A4 page. */
+            .cv-resume-grid { display: block !important; }
+            .cv-sidebar {
+                position: static !important;
+                width: 100% !important;
+                background: #f6f6f6 !important;
+                border: 1px solid #ddd !important;
+                border-radius: 8px !important;
+                padding: 4mm 4mm !important;
+                margin-bottom: 4mm !important;
+                page-break-inside: avoid; break-inside: avoid;
+            }
+            .cv-sidebar-photo { width: 20mm; height: 20mm; box-shadow: none !important; border: 2px solid #ccc !important; }
+            .cv-sidebar-name { font-size: 14pt; }
+            .cv-sidebar-block { margin-top: 2.2mm; padding-top: 1.8mm; border-color: #ddd !important; page-break-inside: avoid; break-inside: avoid; }
+            .cv-sidebar-heading { font-size: 10pt; color: #b8860b !important; }
+            .cv-sidebar-contact li { font-size: 9pt; }
+            .cv-tag { font-size: 8pt; padding: 2px 8px; }
+
+            /* Graduation moment: small photo + facts in one row, then the
+               contact list and the QR box together in a second row — so
+               nothing sits alone with empty space around it. */
+            .cv-grad-badge {
+                page-break-inside: avoid; break-inside: avoid;
+                margin-top: 2.2mm; padding: 2.2mm 3mm;
+                background: #fdf3d9 !important;
+                border: 1px solid #d9ac2f !important;
+                border-radius: 6px !important;
+                display: flex !important; flex-direction: column !important;
+                gap: 2mm !important;
+            }
+            .cv-grad-thumb-row { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 2.5mm !important; }
+            .cv-grad-thumb { width: 13mm !important; height: 13mm !important; box-shadow: none !important; border: 1px solid #ccc !important; }
+            .cv-grad-info { flex: 1; min-width: 0; }
+            .cv-grad-eyebrow { font-size: 7.6pt; padding: 2px 8px; }
+            .cv-grad-info strong { font-size: 9.5pt; }
+            .cv-grad-info > span:not(.cv-grad-date) { font-size: 9pt; }
+            .cv-grad-date { font-size: 8.5pt; color: #8a6300 !important; }
+
+            .cv-contact-qr-row { display: flex !important; flex-direction: row !important; align-items: flex-start !important; gap: 3mm !important; border-color: #d9ac2f !important; padding-top: 2mm !important; }
+            .cv-grad-contact { flex: 1; min-width: 0; }
+            .cv-qr-block { width: 28mm !important; gap: 1mm !important; }
+            .cv-qr-badge { background: #e6faf1 !important; border: 1px solid #29c58f !important; color: #158a5f !important; font-size: 6.4pt !important; padding: 1px 6px !important; }
+            .cv-qr-frame { width: 26mm !important; height: 26mm !important; border: 1px dashed #d9ac2f !important; box-shadow: none !important; }
+            .cv-qr-caption { font-size: 6.2pt !important; }
+
+            /* Long text blocks are allowed to break naturally across a
+               page boundary (no forced page-break-inside:avoid here) —
+               that's what stops a block from jumping whole onto the next
+               page and leaving the current page half-empty. Only small,
+               atomic pieces (table rows, tags, the sidebar) stay unbroken. */
+            .cv-main { gap: 2.6mm !important; }
+            .cv-main-block {
+                background: #fafafa !important; border: 1px solid #ddd !important;
+                border-radius: 8px !important; padding: 2.8mm 4mm !important;
+            }
+            .cv-main-block h2 { font-size: 13.5pt; margin-bottom: 2mm; page-break-after: avoid; break-after: avoid; }
+            .cv-main-block p { font-size: 11pt; line-height: 1.5; orphans: 3; widows: 3; }
+
+            .courses-table { font-size: 9.6pt; }
+            .courses-table th, .courses-table td { padding: 1.6mm 1.6mm; }
+            .courses-table tr { page-break-inside: avoid; break-inside: avoid; }
+            .notice { font-size: 8.8pt; padding: 1.8mm 3mm; }
+
+            .badge-skill { border: 1px solid #ccc !important; background: #f2f2f2 !important; color: #111 !important; }
+        }
+
+        /* ============================================
+           PDF export flattening — applied to the live DOM (via a
+           temporary class on <body>) only while html2canvas captures
+           the CV for the "Download PDF" button. Mirrors the @media
+           print flattening above, so the exported file matches what
+           the Print button produces, but this version is usable
+           on-screen because html2canvas doesn't apply print media
+           queries.
+           ============================================ */
+        body.pdf-exporting .container,
+        body.pdf-exporting #imgLightbox,
+        body.pdf-exporting #scrollProgress,
+        body.pdf-exporting #backToTopBtn,
+        body.pdf-exporting #copyToast { display: none !important; }
+        body.pdf-exporting .cv-overlay {
+            position: static !important; background: #fff !important;
+            padding: 0 !important; overflow: visible !important; inset: auto !important;
+        }
+        body.pdf-exporting .cv-overlay-panel {
+            background: #fff !important; color: #111 !important;
+            box-shadow: none !important; border: none !important; border-radius: 0 !important;
+            width: 800px !important; max-width: 800px !important; margin: 0 !important; padding: 24px !important;
+            opacity: 1 !important; transform: none !important; animation: none !important;
+        }
+        body.pdf-exporting .cv-overlay-panel * { color: #111 !important; animation: none !important; transition: none !important; }
+        body.pdf-exporting .cv-close-btn,
+        body.pdf-exporting .cv-actions-bar { display: none !important; }
+        body.pdf-exporting .cv-resume-grid { display: block !important; }
+        body.pdf-exporting .cv-sidebar {
+            position: static !important; width: 100% !important;
+            background: #f6f6f6 !important; border: 1px solid #ddd !important;
+            border-radius: 8px !important; padding: 18px !important; margin-bottom: 18px !important;
+        }
+        body.pdf-exporting .cv-sidebar-photo { width: 88px; height: 88px; box-shadow: none !important; border: 2px solid #ccc !important; }
+        body.pdf-exporting .cv-sidebar-name { font-size: 19px !important; }
+        body.pdf-exporting .cv-sidebar-heading { font-size: 14px !important; color: #b8860b !important; }
+        body.pdf-exporting .cv-sidebar-contact li { font-size: 12px !important; }
+        body.pdf-exporting .cv-tag { font-size: 11px !important; }
+        body.pdf-exporting .cv-grad-badge {
+            background: #fdf3d9 !important; border: 1px solid #d9ac2f !important; border-radius: 8px !important;
+        }
+        body.pdf-exporting .cv-grad-thumb { width: 50px !important; height: 50px !important; box-shadow: none !important; background: #fff !important; border: 1px solid #ccc !important; }
+        body.pdf-exporting .cv-grad-eyebrow { font-size: 11px !important; }
+        body.pdf-exporting .cv-grad-info strong { font-size: 13px !important; }
+        body.pdf-exporting .cv-grad-info > span:not(.cv-grad-date) { font-size: 12px !important; }
+        body.pdf-exporting .cv-grad-date { color: #8a6300 !important; font-size: 12px !important; }
+        body.pdf-exporting .cv-contact-qr-row { border-color: #d9ac2f !important; }
+        body.pdf-exporting .cv-qr-block { width: 104px !important; }
+        body.pdf-exporting .cv-qr-badge { background: #e6faf1 !important; border: 1px solid #29c58f !important; color: #158a5f !important; font-size: 9px !important; }
+        body.pdf-exporting .cv-qr-frame { width: 96px !important; height: 96px !important; border: 1px dashed #d9ac2f !important; box-shadow: none !important; }
+        body.pdf-exporting .cv-qr-caption { font-size: 9.5px !important; }
+        body.pdf-exporting .cv-main-block {
+            background: #fafafa !important; border: 1px solid #ddd !important; border-radius: 8px !important;
+        }
+        body.pdf-exporting .cv-main-block h2 { font-size: 18px !important; }
+        body.pdf-exporting .cv-main-block p { font-size: 15px !important; line-height: 1.5 !important; }
+        body.pdf-exporting .courses-table { font-size: 13px !important; }
+        body.pdf-exporting .notice { font-size: 12px !important; }
+        body.pdf-exporting .badge-skill { border: 1px solid #ccc !important; background: #f2f2f2 !important; color: #111 !important; }
+    </style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<button class="back-to-top" id="backToTopBtn" title="Back to top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+<div class="copy-toast" id="copyToast" role="status" aria-live="polite"></div>
+<div class="container">
+    <!-- Language Switcher -->
+    <div class="lang-switch fade-in-up">
+        <button class="lang-btn" id="lang-ar">🇪🇬 العربية</button>
+        <button class="lang-btn active" id="lang-en">🇬🇧 English</button>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="profile-card fade-in-up">
+        <div class="profile-avatar">
+            <img src="profil.jpg" alt="Profile" onerror="this.src='https://placehold.co/400x400/0f2138/d4a017?text=CV'">
+        </div>
+        <div class="profile-details">
+            <h1 id="profile-name">عبدالرحمن صبحى محمد</h1>
+            <div class="badge-title" id="profile-title"><i class="fas fa-keyboard float-icon"></i> Data Entry & IT Support Specialist</div>
+            <div class="profile-stats" id="profile-stats"></div>
+        </div>
+    </div>
+
+    <!-- Certificate Show Button -->
+    <div class="certificate-btn fade-in-up">
+        <button class="btn-show-certs" id="toggleCertBtn"><i class="fas fa-certificate float-icon"></i> <span id="certBtnText"></span> <i class="fas fa-chevron-down"></i></button>
+        <a class="btn-cert-page" id="certPageBtn" href="certificates.html"><i class="fas fa-images"></i> <span id="certPageBtnText"></span></a>
+    </div>
+    <div id="certificatesSection" class="certificates-gallery">
+        <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="gallery-note" id="galleryNote"><i class="fas fa-hand-pointer"></i> <span id="galleryNoteText"></span></div>
+    </div>
+
+    <!-- Dynamic Content Sections -->
+    <div id="dynamicContent"></div>
+
+    <!-- View Full CV Trigger -->
+    <div class="cv-trigger-wrap fade-in-up">
+        <button class="btn-view-cv" id="openCvBtn"><i class="fas fa-file-alt float-icon"></i> <span id="viewCvText"></span></button>
+    </div>
+
+    <!-- Contact & PDF Buttons -->
+    <div class="contact-links fade-in-up">
+        <a href="https://wa.me/201028414049" target="_blank" class="contact-btn whatsapp"><i class="fab fa-whatsapp fa-lg"></i> <span id="whatsappText"></span></a>
+        <a href="tel:+201028414049" class="contact-btn call"><i class="fas fa-phone-alt"></i> <span id="callText"></span></a>
+    </div>
+    <footer id="footerText"></footer>
+</div>
+
+<!-- Lightbox -->
+<div id="imgLightbox" class="img-lightbox">
+    <div class="close-icon" id="closeLightboxBtn">✖</div>
+    <img id="zoomedImg" src="" alt="Enlarged Certificate">
+</div>
+
+<!-- ============================================
+     Full CV Overlay Page
+     ============================================ -->
+<div id="cvOverlay" class="cv-overlay">
+    <div class="cv-overlay-panel cv-resume">
+        <div class="cv-close-btn" id="closeCvBtn" title="Close">✖</div>
+
+        <div class="cv-resume-grid">
+            <!-- Sidebar -->
+            <aside class="cv-sidebar">
+                <img class="cv-sidebar-photo" src="profil.jpg" alt="Profile" onerror="this.src='https://placehold.co/400x400/0f2138/d4a017?text=CV'">
+                <h1 id="cv-profile-name" class="cv-sidebar-name"></h1>
+                <div class="badge-title" id="cv-profile-title"></div>
+
+                <!-- Graduation highlight: a compact photo + facts row, and
+                     below it the contact list sitting right next to the
+                     QR placeholder (so there's no leftover empty space
+                     around the QR box). The QR image itself is left
+                     EMPTY on purpose — see the QR CODE NOTE comment near
+                     the top of the <head> for how to add your own. -->
+                <div class="cv-grad-badge" id="cvGradBadge">
+                    <div class="cv-grad-thumb-row">
+                        <img class="cv-grad-thumb" src="images/graduation-certificate.jpg" alt="Graduation Certificate"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%230c1c30%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23d4a017%22 font-size=%2214%22%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E'"
+                             id="cvGradThumb">
+                        <div class="cv-grad-info">
+                            <span class="cv-grad-eyebrow" id="cvGradEyebrow"></span>
+                            <strong id="cvGradFaculty"></strong>
+                            <span id="cvGradUniversity"></span>
+                            <span class="cv-grad-date"><i class="fas fa-calendar-check"></i> <span id="cvGradDateLabel"></span>: <span id="cvGradDate"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="cv-contact-qr-row">
+                        <div class="cv-grad-contact">
+                            <h3 class="cv-sidebar-heading"><i class="fas fa-address-card"></i> <span id="cvContactLabel"></span></h3>
+                            <ul class="cv-sidebar-contact">
+                                <li id="cvWhatsappItem" title="Click to copy"><i class="fab fa-whatsapp"></i> 01028414049</li>
+                                <li id="cvCallItem" title="Click to copy"><i class="fas fa-phone-alt"></i> 01028414049</li>
+                            </ul>
+                        </div>
+                        <div class="cv-qr-block">
+                            <span class="cv-qr-badge"><i class="fas fa-shield-halved"></i> <span id="cvQrBadgeText"></span></span>
+                            <div class="cv-qr-frame">
+                                <img id="cvQrImg" src="images/qr.jpg" alt="QR"
+                                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 84 84%22%3E%3Crect width=%2284%22 height=%2284%22 fill=%22%23ffffff%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23c9c9c9%22 font-size=%2211%22 font-family=%22sans-serif%22%3EQR%3C/text%3E%3C/svg%3E'">
+                            </div>
+                            <span class="cv-qr-caption" id="cvQrCaption"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-sidebar-block">
+                    <h3 class="cv-sidebar-heading" id="cvSidebarTechTitle"></h3>
+                    <div class="cv-sidebar-tags" id="cvSidebarTechSkills"></div>
+                </div>
+
+                <div class="cv-sidebar-block">
+                    <h3 class="cv-sidebar-heading" id="cvSidebarSoftTitle"></h3>
+                    <div class="cv-sidebar-tags" id="cvSidebarSoftSkills"></div>
+                </div>
+            </aside>
+
+            <!-- Main column -->
+            <main class="cv-main">
+                <section class="cv-main-block" id="cvAboutBlock"></section>
+                <section class="cv-main-block" id="cvGoalBlock"></section>
+                <section class="cv-main-block" id="cvEducationBlock"></section>
+                <section class="cv-main-block" id="cvCertificatesBlock"></section>
+            </main>
+        </div>
+
+        <div class="cv-actions-bar">
+            <button class="cv-pdf-btn" id="cvDownloadPdfBtn"><i class="fas fa-file-pdf"></i> <span id="cvPdfBtnText"></span></button>
+            <button class="cv-print-btn" id="cvPrintBtn"><i class="fas fa-print"></i> <span id="cvPrintBtnText"></span></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const content = {
+        ar: {
+            profileName: "عبدالرحمن صبحى محمد",
+            profileTitle: "خريج تربية رياضية - يجيد التعامل مع الكمبيوتر",
+            stats: ['شهادة ICDL', 'شهادة إدراك - إدارة صحية', 'بكالوريوس - جاهز للعمل الفوري'],
+            certBtn: "الشهادات والمؤهلات",
+            certPageBtn: "عرض كل الشهادات والتواريخ",
+            galleryNote: "اضغط على أي صورة لتكبيرها",
+            whatsapp: "واتساب: 01028414049",
+            call: "اتصال مباشر",
+            viewCv: "عرض السيرة الذاتية كاملة",
+            cvContact: "التواصل",
+            cvPdfBtn: "تحميل PDF",
+            cvPrintBtn: "طباعة",
+            footer: "سيرة ذاتية تفاعلية — إعداد رقمي احترافي",
+            qrBadgeText: "توثيق رقمي",
+            qrCaption: "امسح الكود للتحقق من الشهادات",
+            copiedToast: "تم نسخ الرقم ✓",
+            fileProtocolNotice: "تحميل PDF مباشرة يحتاج فتح الصفحة من رابط إنترنت وليس بفتح الملف من جهازك مباشرة. جارٍ فتح نافذة الطباعة — اختر «حفظ كـ PDF» لإتمام التحميل.",
+            pdfFallbackNotice: "تعذّر إنشاء ملف PDF مباشرة، جارٍ فتح نافذة الطباعة — اختر «حفظ كـ PDF» لإتمام التحميل.",
+            sections: {
+                about: {
+                    title: "نبذة مهنية",
+                    text: "خريج بكالوريوس، حاصل على شهادة ICDL الدولية في مهارات الحاسب الآلي، وشهادة موثقة من منصة إدراك في مجال الإدارة الصحية. أتميز بالقدرة على التعلم السريع والاستيعاب الجيد، مع حرصي الدائم على الاستمرار في التطوير والتدريب. أجيد العمل تحت ضغط العمل، ولدي القدرة على تعلّم أي مهارة جديدة متعلقة بالحاسب الآلي وإدخال وتسجيل البيانات؛ فغالباً ما أحتاج يوماً أو يومين فقط للتعامل الكامل مع أي نظام جديد، وبعدها أصبح قادراً على التعامل باحترافية مع جميع بياناته."
+                },
+                careerGoal: {
+                    title: "الهدف المهني",
+                    text: "أتطلع إلى الانضمام لفريق عمل جاد يمنحني فرصة لتوظيف مهاراتي في إدخال وتنظيم البيانات ودعم الأعمال المكتبية والتقنية، والاستفادة من قدرتي على التعلم السريع لتقديم أداء متميز، وذلك من خلال بيئة عمل مهنية تشجع على التطور والتدريب المستمر."
+                },
+                certificates: {
+                    title: "الشهادات والدورات",
+                    tableHeaders: ["الشهادة / الدورة", "الجهة المانحة", "التاريخ"],
+                    rows: [
+                        ["شهادة التخرج - بكالوريوس التربية الرياضية", "كلية التربية الرياضية - جامعة المنيا", "16/11/2025"],
+                        ["شهادة ICDL - رخصة قيادة الحاسب الآلي الدولية", "منظمة ICDL", "24/5/2023"],
+                        ["شهادة معتمدة في مجال الصحة والإدارة الصحية", "منصة إدراك (Edraak)", "9/8/2026"]
+                    ],
+                    notice: "شهادة إنهاء الخدمة العسكرية 19/1/2026 — الأوراق الرسمية متاحة عند الطلب"
+                },
+                skills: {
+                    title: "المهارات",
+                    technical: "🔧 مهارات فنية",
+                    soft: "🧠 مهارات شخصية",
+                    techItems: ["إجادة الحاسب الآلي (ICDL)", "إدخال وتنظيم البيانات", "إعداد التقارير الإحصائية", "أساسيات الإدارة الصحية", "برامج Microsoft Office"],
+                    softItems: ["الدقة والانتباه للتفاصيل", "الالتزام والانضباط", "العمل الجماعي", "التواصل الفعّال", "حل المشكلات", "سرعة التعلم والاستيعاب", "إجادة العمل تحت الضغط", "سرعة التكيف مع الأنظمة الجديدة"]
+                },
+                education: {
+                    title: "التعليم",
+                    text: "بكالوريوس التربية الرياضية من كلية التربية الرياضية - جامعة المنيا (تاريخ التخرج 16/11/2025)، إلى جانب شهادة ICDL الدولية وشهادة متخصصة من منصة إدراك في مجال الصحة والإدارة الصحية، مع استعداد كامل لاستكمال أي تدريب أو دراسة متخصصة في التسجيل الطبي والمعلومات الصحية."
+                },
+                graduation: {
+                    eyebrow: "لحظة التخرج",
+                    faculty: "كلية التربية الرياضية",
+                    university: "جامعة المنيا",
+                    dateLabel: "تاريخ التخرج",
+                    date: "16/11/2025",
+                    caption: "شهادة التخرج"
+                }
+            }
+        },
+        en: {
+            profileName: "Abdelrahman Sobhy Mohamed",
+            profileTitle: "Physical Education Graduate — Skilled in Computer Use",
+            stats: ['ICDL Certified', 'Edraak Certified - Health Admin', 'Ready for Immediate Hire'],
+            certBtn: "Certificates & Qualifications",
+            certPageBtn: "View All Certificates & Dates",
+            galleryNote: "Click any image to enlarge",
+            whatsapp: "WhatsApp: 01028414049",
+            call: "Call Now",
+            viewCv: "View Full CV",
+            cvContact: "Contact",
+            cvPdfBtn: "Download PDF",
+            cvPrintBtn: "Print",
+            footer: "Interactive CV — Professionally built",
+            qrBadgeText: "Verified",
+            qrCaption: "Scan to verify certificates",
+            copiedToast: "Number copied ✓",
+            fileProtocolNotice: "Direct PDF download needs the page opened from a web link, not a local file on your device. Opening the print dialog — choose \"Save as PDF\" to finish.",
+            pdfFallbackNotice: "Couldn't generate the PDF directly — opening the print dialog instead. Choose \"Save as PDF\" to finish.",
+            sections: {
+                about: {
+                    title: "Professional Summary",
+                    text: "A university graduate holding an internationally recognized ICDL certificate in computer skills, along with a certified Edraak course in health administration. I'm a fast learner with strong comprehension and a genuine commitment to continuous training and self-development. I handle work pressure well and can pick up almost any computer-related or data-management skill quickly — usually needing just a day or two to fully adapt to a new system, after which I can confidently manage all of its data."
+                },
+                careerGoal: {
+                    title: "Career Goal",
+                    text: "I'm looking to join a serious, professional team where I can put my data entry, organization, and office/technical support skills to good use, and make the most of my ability to learn quickly to deliver strong performance — within a work environment that encourages continuous growth and training."
+                },
+                certificates: {
+                    title: "Certificates & Courses",
+                    tableHeaders: ["Certificate / Course", "Issuing Body", "Date"],
+                    rows: [
+                        ["Graduation Certificate - Bachelor's in Physical Education", "Faculty of Physical Education, Minia University", "16/11/2025"],
+                        ["ICDL - International Computer Driving Licence", "ICDL Foundation", "24/5/2023"],
+                        ["Certified Course in Health & Health Administration", "Edraak Platform", "9/8/2026"]
+                    ],
+                    notice: "Military Service Completion Certificate 19/1/2026 — Official documents available on request"
+                },
+                skills: {
+                    title: "Skills",
+                    technical: "🔧 Technical Skills",
+                    soft: "🧠 Soft Skills",
+                    techItems: ["Computer Proficiency (ICDL)", "Data Entry & Organization", "Statistical Reporting", "Health Administration Basics", "Microsoft Office Suite"],
+                    softItems: ["Accuracy & Attention to Detail", "Commitment & Discipline", "Teamwork", "Effective Communication", "Problem Solving", "Fast Learner", "Works Well Under Pressure", "Quick Adaptability to New Systems"]
+                },
+                education: {
+                    title: "Education",
+                    text: "Bachelor's Degree in Physical Education from the Faculty of Physical Education, Minia University (Graduated 16/11/2025), along with an international ICDL certificate and a specialized Edraak course in health and health administration, with full readiness to complete further training in medical records and health information."
+                },
+                graduation: {
+                    eyebrow: "Graduation Moment",
+                    faculty: "Faculty of Physical Education",
+                    university: "Minia University",
+                    dateLabel: "Graduation Date",
+                    date: "16/11/2025",
+                    caption: "Graduation Certificate"
+                }
+            }
+        }
+    };
+
+    let currentLang = 'en';
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        const data = content[lang];
+
+        document.getElementById('profile-name').innerText = data.profileName;
+        document.getElementById('profile-title').innerHTML = `<i class="fas fa-keyboard"></i> ${data.profileTitle}`;
+        document.getElementById('profile-stats').innerHTML = data.stats.map(s => `<span class="stat-item"><i class="fas fa-certificate"></i> ${s}</span>`).join('');
+        document.getElementById('certBtnText').innerText = data.certBtn;
+        const certPageBtnText = document.getElementById('certPageBtnText');
+        if (certPageBtnText) certPageBtnText.innerText = data.certPageBtn;
+        document.getElementById('galleryNoteText').innerText = data.galleryNote;
+        document.getElementById('whatsappText').innerText = data.whatsapp;
+        document.getElementById('callText').innerText = data.call;
+        document.getElementById('footerText').innerText = data.footer;
+
+        const container = document.getElementById('dynamicContent');
+        container.innerHTML = '';
+
+        // Build the homepage's stacked CV-section cards.
+        const sectionsHTML = `
+            <div class="cv-section fade-in-up">
+                <h2><i class="fas fa-user-astronaut"></i> ${data.sections.about.title}</h2>
+                <p>${data.sections.about.text}</p>
+            </div>
+            <div class="cv-section fade-in-up">
+                <h2><i class="fas fa-bullseye"></i> ${data.sections.careerGoal.title}</h2>
+                <p>${data.sections.careerGoal.text}</p>
+            </div>
+            <div class="cv-section fade-in-up">
+                <h2><i class="fas fa-certificate"></i> ${data.sections.certificates.title}</h2>
+                <table class="courses-table">
+                    <thead><tr>${data.sections.certificates.tableHeaders.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                    <tbody>${data.sections.certificates.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>
+                </table>
+                <div class="notice">${data.sections.certificates.notice}</div>
+            </div>
+            <div class="cv-section fade-in-up">
+                <h2><i class="fas fa-cogs"></i> ${data.sections.skills.title}</h2>
+                <div class="skills-wrapper">
+                    <div class="skills-col"><h3>${data.sections.skills.technical}</h3>${data.sections.skills.techItems.map(s => `<span class="badge-skill">${s}</span>`).join('')}</div>
+                    <div class="skills-col"><h3>${data.sections.skills.soft}</h3>${data.sections.skills.softItems.map(s => `<span class="badge-skill">${s}</span>`).join('')}</div>
+                </div>
+            </div>
+            <div class="cv-section fade-in-up">
+                <h2><i class="fas fa-graduation-cap"></i> ${data.sections.education.title}</h2>
+                <p>${data.sections.education.text}</p>
+            </div>
+        `;
+        container.innerHTML = sectionsHTML;
+
+        // ============================================
+        // Populate the Full CV overlay — a distinct, resume-style
+        // two-column layout (sidebar + main), not a mirror of the
+        // homepage cards.
+        // ============================================
+        const cvName = document.getElementById('cv-profile-name');
+        const cvTitle = document.getElementById('cv-profile-title');
+        if (cvName) cvName.innerText = data.profileName;
+        if (cvTitle) cvTitle.innerHTML = `<i class="fas fa-keyboard"></i> ${data.profileTitle}`;
+
+        const cvContactLabel = document.getElementById('cvContactLabel');
+        if (cvContactLabel) cvContactLabel.innerText = data.cvContact;
+
+        const cvTechTitle = document.getElementById('cvSidebarTechTitle');
+        const cvSoftTitle = document.getElementById('cvSidebarSoftTitle');
+        if (cvTechTitle) cvTechTitle.innerText = data.sections.skills.technical;
+        if (cvSoftTitle) cvSoftTitle.innerText = data.sections.skills.soft;
+
+        const cvTechSkills = document.getElementById('cvSidebarTechSkills');
+        const cvSoftSkills = document.getElementById('cvSidebarSoftSkills');
+        if (cvTechSkills) cvTechSkills.innerHTML = data.sections.skills.techItems.map(s => `<span class="badge-skill cv-tag">${s}</span>`).join('');
+        if (cvSoftSkills) cvSoftSkills.innerHTML = data.sections.skills.softItems.map(s => `<span class="badge-skill cv-tag">${s}</span>`).join('');
+
+        // Graduation milestone card — deliberately presented as a visual
+        // badge (photo + eyebrow + date), distinct from the plain Education
+        // paragraph used elsewhere on the page.
+        const grad = data.sections.graduation;
+        const setText = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+        setText('cvGradEyebrow', grad.eyebrow);
+        setText('cvGradFaculty', grad.faculty);
+        setText('cvGradUniversity', grad.university);
+        setText('cvGradDateLabel', grad.dateLabel);
+        setText('cvGradDate', grad.date);
+        setText('cvQrBadgeText', data.qrBadgeText);
+        setText('cvQrCaption', data.qrCaption);
+        const cvGradThumb = document.getElementById('cvGradThumb');
+        if (cvGradThumb) {
+            cvGradThumb.alt = grad.caption;
+            cvGradThumb.setAttribute('role', 'button');
+            cvGradThumb.setAttribute('tabindex', '0');
+            cvGradThumb.onclick = () => openLightbox(cvGradThumb.src);
+            cvGradThumb.onkeydown = (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(cvGradThumb.src); }
+            };
+        }
+
+        const cvAboutBlock = document.getElementById('cvAboutBlock');
+        if (cvAboutBlock) cvAboutBlock.innerHTML = `
+            <h2><i class="fas fa-user-astronaut"></i> ${data.sections.about.title}</h2>
+            <p>${data.sections.about.text}</p>
+        `;
+        const cvGoalBlock = document.getElementById('cvGoalBlock');
+        if (cvGoalBlock) cvGoalBlock.innerHTML = `
+            <h2><i class="fas fa-bullseye"></i> ${data.sections.careerGoal.title}</h2>
+            <p>${data.sections.careerGoal.text}</p>
+        `;
+        const cvEducationBlock = document.getElementById('cvEducationBlock');
+        if (cvEducationBlock) cvEducationBlock.innerHTML = `
+            <h2><i class="fas fa-graduation-cap"></i> ${data.sections.education.title}</h2>
+            <p>${data.sections.education.text}</p>
+        `;
+        const cvCertificatesBlock = document.getElementById('cvCertificatesBlock');
+        if (cvCertificatesBlock) cvCertificatesBlock.innerHTML = `
+            <h2><i class="fas fa-certificate"></i> ${data.sections.certificates.title}</h2>
+            <table class="courses-table">
+                <thead><tr>${data.sections.certificates.tableHeaders.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+                <tbody>${data.sections.certificates.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>
+            </table>
+            <div class="notice">${data.sections.certificates.notice}</div>
+        `;
+
+        const viewCvText = document.getElementById('viewCvText');
+        if (viewCvText) viewCvText.innerText = data.viewCv;
+        const cvPdfBtnText = document.getElementById('cvPdfBtnText');
+        if (cvPdfBtnText) cvPdfBtnText.innerText = data.cvPdfBtn;
+        const cvPrintBtnText = document.getElementById('cvPrintBtnText');
+        if (cvPrintBtnText) cvPrintBtnText.innerText = data.cvPrintBtn;
+
+        // Direction & active buttons
+        document.body.classList.toggle('lang-ar', lang === 'ar');
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+
+        const isGalleryVisible = document.getElementById('certificatesSection').classList.contains('show');
+        const icon = isGalleryVisible ? 'fa-chevron-up' : 'fa-chevron-down';
+        toggleBtn.innerHTML = `<i class="fas fa-certificate"></i> <span id="certBtnText">${data.certBtn}</span> <i class="fas ${icon}"></i>`;
+    }
+
+    // Build certificate gallery (2 real certificates)
+    const galleryItems = [
+        { file: 'images/1.jpg', ar: 'شهادة ICDL', en: 'ICDL Certificate' },
+        { file: 'images/2.jpg', ar: 'شهادة إدراك - إدارة صحية', en: 'Edraak Certificate - Health Admin' },
+        { file: 'images/graduation-certificate.jpg', ar: 'شهادة التخرج - كلية التربية الرياضية، جامعة المنيا', en: 'Graduation Certificate - Faculty of Physical Education, Minia University' }
+    ];
+    const galleryGrid = document.getElementById('galleryGrid');
+    galleryItems.forEach((item, i) => {
+        const card = document.createElement('div');
+        card.className = 'cert-card';
+        // Keyboard-accessible: this card is clickable but is a <div>, so
+        // it needs an explicit role, tab stop, and Enter/Space handling
+        // to work for keyboard and screen-reader users, not just a mouse.
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        const img = document.createElement('img');
+        img.src = item.file;
+        img.alt = item.en;
+        img.onerror = function() { this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"%3E%3Crect width="200" height="150" fill="%230c1c30"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23d4a017" font-size="14"%3E📄 Cert %23'+(i+1)+'%3C/text%3E%3C/svg%3E'; };
+        const p = document.createElement('p');
+        p.innerHTML = `📜 ${currentLang === 'ar' ? item.ar : item.en}`;
+        card.setAttribute('aria-label', currentLang === 'ar' ? item.ar : item.en);
+        card.appendChild(img);
+        card.appendChild(p);
+        const activate = () => openLightbox(img.src);
+        card.addEventListener('click', activate);
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+        });
+        galleryGrid.appendChild(card);
+    });
+
+    // Toggle certificate gallery
+    const toggleBtn = document.getElementById('toggleCertBtn');
+    const certSectionEl = document.getElementById('certificatesSection');
+    let isVisible = false;
+    toggleBtn.addEventListener('click', () => {
+        isVisible = !isVisible;
+        certSectionEl.classList.toggle('show', isVisible);
+        const icon = isVisible ? 'fa-chevron-up' : 'fa-chevron-down';
+        toggleBtn.innerHTML = `<i class="fas fa-certificate"></i> <span id="certBtnText">${content[currentLang].certBtn}</span> <i class="fas ${icon}"></i>`;
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('imgLightbox');
+    const zoomedImg = document.getElementById('zoomedImg');
+    function openLightbox(src) { zoomedImg.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; zoomedImg.src = ''; }
+    document.getElementById('closeLightboxBtn').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
+
+    // Language switcher
+    document.getElementById('lang-ar').addEventListener('click', () => updateLanguage('ar'));
+    document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
+
+    // ============================================
+    // Full CV Overlay — open / close / download / print
+    // ============================================
+    const cvOverlay = document.getElementById('cvOverlay');
+    const openCvBtn = document.getElementById('openCvBtn');
+    const closeCvBtn = document.getElementById('closeCvBtn');
+
+    // Shared toast helper — used for the copy-to-clipboard confirmation
+    // and, further down, for explaining PDF export fallbacks instead of
+    // silently switching to the print dialog with no explanation.
+    const copyToastEl = document.getElementById('copyToast');
+    let toastHideTimer = null;
+    function showToast(message) {
+        if (!copyToastEl) return;
+        copyToastEl.innerText = message;
+        copyToastEl.classList.add('show');
+        if (toastHideTimer) clearTimeout(toastHideTimer);
+        toastHideTimer = setTimeout(() => copyToastEl.classList.remove('show'), 3200);
+    }
+
+    function openCvOverlay() {
+        cvOverlay.classList.remove('closing');
+        cvOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCvOverlay() {
+        cvOverlay.classList.add('closing');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            cvOverlay.classList.remove('active', 'closing');
+        }, 280);
+    }
+    openCvBtn.addEventListener('click', openCvOverlay);
+    closeCvBtn.addEventListener('click', closeCvOverlay);
+    cvOverlay.addEventListener('click', (e) => { if (e.target === cvOverlay) closeCvOverlay(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && cvOverlay.classList.contains('active')) closeCvOverlay();
+    });
+
+    // "Print" still goes through the browser's native print pipeline
+    // (window.print) — that's the right tool for an actual printer.
+    //
+    // "Download PDF" builds a real PDF file in the browser (using
+    // html2canvas to snapshot the flattened, print-style layout, then
+    // jsPDF to paginate it onto A4 pages) and saves it straight to the
+    // Downloads folder — no print dialog, no manual "Save as PDF" step.
+    // This only works when the page is served over http(s) (a real host,
+    // or a local dev server) — see the file:// check inside the function
+    // for why a locally double-clicked HTML file can't do this and falls
+    // back to print with an on-screen explanation instead.
+    const downloadFileName = 'Abdelrahman-Sobhy-CV';
+
+    async function downloadCvPdf() {
+        if (!cvOverlay.classList.contains('active')) openCvOverlay();
+        await new Promise(r => setTimeout(r, 150));
+
+        // If this page was opened by double-clicking the file (file://...
+        // instead of http(s)://...), html2canvas can never finish here:
+        // browsers give every file:// resource its own private origin, so
+        // the moment html2canvas paints the local profile/certificate
+        // photos onto its canvas, that canvas is "tainted" and refuses to
+        // export — with no in-browser workaround. That's why "Download
+        // PDF" used to jump straight to print every single time, with no
+        // explanation. We now detect that up front and say so, instead of
+        // silently doing the same fallback and leaving it a mystery.
+        if (window.location.protocol === 'file:') {
+            showToast(content[currentLang].fileProtocolNotice);
+            setTimeout(() => { if (!cvOverlay.classList.contains('active')) openCvOverlay(); window.print(); }, 1100);
+            return;
+        }
+
+        document.body.classList.add('pdf-exporting');
+        await new Promise(r => setTimeout(r, 60)); // let layout settle
+
+        // Make sure every web font — the Arabic font included — has
+        // actually finished loading before the snapshot. Capturing
+        // mid-swap is a common cause of icons/glyphs going missing or
+        // metrics shifting in the exported image.
+        if (window.document.fonts && document.fonts.ready) {
+            try { await document.fonts.ready; } catch (e) { /* non-fatal */ }
+        }
+
+        const target = document.querySelector('.cv-overlay-panel');
+        const baseOptions = { scale: 2, backgroundColor: '#ffffff', useCORS: true };
+
+        try {
+            let canvas;
+            try {
+                // foreignObjectRendering hands the actual text drawing back
+                // to the browser's own rendering engine (via an SVG
+                // <foreignObject>) instead of html2canvas's own manual
+                // text layout. That's what keeps joined Arabic letters
+                // intact — html2canvas's manual text renderer doesn't
+                // reliably reproduce Arabic letter-joining/shaping, which
+                // is what made Arabic text come out broken apart, or
+                // missing altogether, in the exported PDF.
+                canvas = await html2canvas(target, { ...baseOptions, foreignObjectRendering: true });
+            } catch (foreignObjectErr) {
+                console.warn('PDF export: foreignObjectRendering failed, retrying in standard html2canvas mode.', foreignObjectErr);
+                canvas = await html2canvas(target, baseOptions);
+            }
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pageWidth = 210;
+            const pageHeight = 297;
+            const imgWidthFull = pageWidth;
+            const imgHeightFull = (canvas.height * imgWidthFull) / canvas.width;
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+            // A tidy, professional CV should be exactly one A4 page with
+            // no dangling near-empty second page. So:
+            //  - content that already fits -> placed as-is, one page.
+            //  - content that overshoots by a small margin (<=15%) -> the
+            //    whole page is scaled down slightly so it still lands on
+            //    a single A4 sheet.
+            //  - content that's genuinely too long for one page -> sliced
+            //    cleanly across as few pages as actually needed, ignoring
+            //    any leftover sliver under 5mm so no blank trailing page
+            //    gets created.
+            if (imgHeightFull <= pageHeight) {
+                pdf.addImage(imgData, 'JPEG', 0, 0, imgWidthFull, imgHeightFull);
+            } else if (imgHeightFull <= pageHeight * 1.15) {
+                const scale = pageHeight / imgHeightFull;
+                const fitWidth = imgWidthFull * scale;
+                const xOffset = (pageWidth - fitWidth) / 2;
+                pdf.addImage(imgData, 'JPEG', xOffset, 0, fitWidth, pageHeight);
+            } else {
+                let heightLeft = imgHeightFull;
+                let position = 0;
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidthFull, imgHeightFull);
+                heightLeft -= pageHeight;
+                while (heightLeft > 5) {
+                    position -= pageHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidthFull, imgHeightFull);
+                    heightLeft -= pageHeight;
+                }
+            }
+            pdf.save(downloadFileName + '.pdf');
+        } catch (err) {
+            // If PDF generation fails for any other reason (e.g. the CDN
+            // libraries didn't load), fall back to the native print
+            // dialog so the person can still export via "Save as PDF" —
+            // but say so, rather than switching silently.
+            console.error('PDF export failed, falling back to the print dialog:', err);
+            showToast(content[currentLang].pdfFallbackNotice);
+            setTimeout(() => window.print(), 700);
+        } finally {
+            document.body.classList.remove('pdf-exporting');
+        }
+    }
+
+    function printCv() {
+        if (!cvOverlay.classList.contains('active')) openCvOverlay();
+        setTimeout(() => window.print(), 150);
+    }
+
+    const cvDownloadPdfBtn = document.getElementById('cvDownloadPdfBtn');
+    cvDownloadPdfBtn.addEventListener('click', downloadCvPdf);
+
+    const cvPrintBtn = document.getElementById('cvPrintBtn');
+    cvPrintBtn.addEventListener('click', printCv);
+
+    // ============================================
+    // Scroll progress bar + back-to-top button
+    // ============================================
+    const scrollProgressEl = document.getElementById('scrollProgress');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    function onScrollUpdate() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (scrollProgressEl) scrollProgressEl.style.width = pct + '%';
+        if (backToTopBtn) backToTopBtn.classList.toggle('show', scrollTop > 400);
+    }
+    window.addEventListener('scroll', onScrollUpdate, { passive: true });
+    if (backToTopBtn) backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ============================================
+    // Tap-to-copy phone number (WhatsApp / Call rows inside the CV
+    // sidebar) — a small, recruiter-friendly convenience touch.
+    // ============================================
+    function copyToClipboard(text) {
+        const done = () => showToast(content[currentLang].copiedToast);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(done);
+        } else {
+            done();
+        }
+    }
+    ['cvWhatsappItem', 'cvCallItem'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', () => copyToClipboard('01028414049'));
+    });
+
+    // Initialize with English
+    updateLanguage('en');
+</script>
+</body>
+</html>
